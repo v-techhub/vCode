@@ -58,7 +58,14 @@ export default function Posts() {
                 <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     {posts.map((post) => (
                         <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
-                            <Image priority src="https://cdn.pixabay.com/photo/2024/06/14/12/15/developer-8829735_640.jpg" className="w-full rounded-lg object-cover mb-1" width={100} height={100} alt="Blog Thumbnail" />
+                            <Image
+                                priority
+                                src="https://cdn.pixabay.com/photo/2024/06/14/12/15/developer-8829735_640.jpg" 
+                                className="w-full rounded-lg object-cover mb-1" 
+                                width={100}
+                                 height={100} 
+                                alt="Blog Thumbnail"
+                            />
                             <div className="flex items-center gap-x-4 text-xs">
                                 <time dateTime={post.datetime} className="text-gray-500">
                                     {post.date}
@@ -80,7 +87,14 @@ export default function Posts() {
                                 <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{post.description}</p>
                             </div>
                             <div className="relative mt-8 flex items-center gap-x-4">
-                                <img alt="" src={post.author.imageUrl} className="h-10 w-10 rounded-full bg-gray-50" />
+                                <Image
+                                    alt="author image"
+                                    width={100}
+                                    height={100}
+                                    priority
+                                    src={post.author.imageUrl}
+                                    className="h-10 w-10 rounded-full bg-gray-50"
+                                />
                                 <div className="text-sm leading-6">
                                     <p className="font-semibold text-gray-900">
                                         <a href={post.author.href}>
