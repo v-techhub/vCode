@@ -15,9 +15,11 @@
 'use client'
 
 import { useState } from 'react'
+import Link from "next/link"
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Field, Label, Switch } from '@headlessui/react'
 import { Metadata } from 'next'
+import { countries } from "@/app/utils/countries"
 
 export const metaData: Metadata = {
     title: "contact",
@@ -43,12 +45,12 @@ export default function Contact() {
                 />
             </div>
             <div className="mx-auto max-w-2xl text-center">
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact sales</h2>
+                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact vCode</h2>
                 <p className="mt-2 text-lg leading-8 text-gray-600">
-                    Aute magna irure deserunt veniam aliqua magna enim voluptate.
+                    feel free to reach out to us for any feedback.
                 </p>
             </div>
-            <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
+            <form className="mx-auto mt-16 max-w-xl sm:mt-20">
                 <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                     <div>
                         <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
@@ -111,24 +113,6 @@ export default function Contact() {
                             Phone number
                         </label>
                         <div className="relative mt-2.5">
-                            <div className="absolute inset-y-0 left-0 flex items-center">
-                                <label htmlFor="country" className="sr-only">
-                                    Country
-                                </label>
-                                <select
-                                    id="country"
-                                    name="country"
-                                    className="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
-                                >
-                                    <option>US</option>
-                                    <option>CA</option>
-                                    <option>EU</option>
-                                </select>
-                                <ChevronDownIcon
-                                    aria-hidden="true"
-                                    className="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400"
-                                />
-                            </div>
                             <input
                                 id="phone-number"
                                 name="phone-number"
@@ -137,6 +121,26 @@ export default function Contact() {
                                 className="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
                         </div>
+                    </div>
+                    <div className="sm:col-span-2">
+                        <label htmlFor="country" className="block text-sm font-semibold leading-6 text-gray-900">
+                            Country
+                        </label>
+                        <select
+                            id="country"
+                            name="country"
+                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        >
+                            {countries.map(country => (
+                                <option>{country}</option>
+                            ))}
+                            {/* <option>CA</option>
+                                    <option>EU</option> */}
+                        </select>
+                        <ChevronDownIcon
+                            aria-hidden="true"
+                            className="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400"
+                        />
                     </div>
                     <div className="sm:col-span-2">
                         <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
@@ -168,9 +172,9 @@ export default function Contact() {
                         </div>
                         <Label className="text-sm leading-6 text-gray-600">
                             By selecting this, you agree to our{' '}
-                            <a href="#" className="font-semibold text-indigo-600">
+                            <Link href="/privacy" className="font-semibold text-indigo-600">
                                 privacy&nbsp;policy
-                            </a>
+                            </Link>
                             .
                         </Label>
                     </Field>
