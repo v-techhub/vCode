@@ -18,14 +18,7 @@ import { useState } from 'react'
 import Link from "next/link"
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Field, Label, Switch } from '@headlessui/react'
-import { Metadata } from 'next'
 import { countries } from "@/app/utils/countries"
-
-export const metaData: Metadata = {
-    title: "contact",
-    description: "",
-    keywords: ""
-}
 
 export default function Contact() {
     const [agreed, setAgreed] = useState(false)

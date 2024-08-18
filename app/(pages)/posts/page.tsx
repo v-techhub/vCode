@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import { fetchPosts } from "@/app/firebase/backend"
+import Link from "next/link"
 // import { format } from "date-fns"
 
 export const generateMetadata = (): Metadata => ({
@@ -38,10 +39,12 @@ export default async function Posts() {
                                 {post.category}
                             </div>
                             <div className="group relative">
+                                <Link href={`posts/${post.id}`}>
                                 <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                                     <span className="absolute inset-0" />
                                     {post.title}
                                 </h3>
+                                </Link>
                                 <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{post.description}</p>
                             </div>
                             <div className="relative mt-8 flex items-center gap-x-4">
