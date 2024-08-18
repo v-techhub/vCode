@@ -1,7 +1,4 @@
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher"
-
-const Post = (params: Params) => {
-    console.log(params)
+const Post = () => {
     return "Post"
 }
 
