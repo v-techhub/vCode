@@ -1,8 +1,29 @@
 import { Metadata } from "next"
 import Image from "next/image"
-import { fetchPosts } from "@/app/firebase/backend"
 import Link from "next/link"
+import { collection, getDocs, query } from "firebase/firestore"
+import { DB } from "../../firebase/config"
+import { Post } from "@/app/types/backend"
 // import { format } from "date-fns"
+
+export async function getStaticProps() {
+    let postsArr = [] as Post[]
+    try {
+        const q = query(collection(DB, "posts"))
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach(doc => {
+            postsArr.push(doc.data() as Post)
+            console.log(doc.data())
+        })
+    } catch (err) {
+        console.error(err)
+    }
+    return {
+        props: {
+            posts: postsArr
+        }
+    }
+}
 
 export const generateMetadata = (): Metadata => ({
     title: "posts",
@@ -10,8 +31,7 @@ export const generateMetadata = (): Metadata => ({
     keywords: "blog, posts"
 })
 
-export default async function Posts() {
-    const posts = await fetchPosts()
+export default function Posts({ posts }: { posts: Post[] }) {
     return (
         <div className="bg-white py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -22,7 +42,7 @@ export default async function Posts() {
                     </p>
                 </div>
                 <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                    {posts.map((post) => (
+                    {posts?.map((post) => (
                         <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
                             <Image
                                 priority
@@ -40,10 +60,10 @@ export default async function Posts() {
                             </div>
                             <div className="group relative">
                                 <Link href={`posts/${post.id}`}>
-                                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                    <span className="absolute inset-0" />
-                                    {post.title}
-                                </h3>
+                                    <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <span className="absolute inset-0" />
+                                        {post.title}
+                                    </h3>
                                 </Link>
                                 <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{post.description}</p>
                             </div>
