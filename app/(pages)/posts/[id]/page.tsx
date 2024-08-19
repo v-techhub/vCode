@@ -3,7 +3,7 @@ import { Post as PostType } from "@/app/types/backend"
 import { doc, getDoc } from "firebase/firestore"
 import Image from "next/image"
 
-export const getPost = async (id: string) => {
+async function getPost(id: string) {
     const ref = doc(DB, `posts/${id}`)
     const docSnap = await getDoc(ref)
     const postData = docSnap.data() as PostType
