@@ -20,7 +20,7 @@ const Post = async ({ params }: { params: any }) => {
                 width={50}
                 height={50}
                 priority
-                className="w-[60%] mx-auto h-[200px] object-cover rounded-lg shadow-lg"
+                className="w-full lg:w-[60%] mx-auto h-[200px] object-cover rounded-lg shadow-lg"
             />
             <section>
                 <h2 className="font-bold text-xl text-center my-5">{post.title}</h2>
