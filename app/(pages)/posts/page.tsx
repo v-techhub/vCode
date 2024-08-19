@@ -6,23 +6,18 @@ import { DB } from "../../firebase/config"
 import { Post } from "@/app/types/backend"
 // import { format } from "date-fns"
 
-export async function getStaticProps() {
+async function fetchPosts() {
     let postsArr = [] as Post[]
     try {
         const q = query(collection(DB, "posts"))
         const querySnapshot = await getDocs(q)
         querySnapshot.forEach(doc => {
             postsArr.push(doc.data() as Post)
-            console.log(doc.data())
         })
     } catch (err) {
         console.error(err)
     }
-    return {
-        props: {
-            posts: postsArr
-        }
-    }
+    return postsArr
 }
 
 export const generateMetadata = (): Metadata => ({
@@ -31,9 +26,10 @@ export const generateMetadata = (): Metadata => ({
     keywords: "blog, posts"
 })
 
-export default function Posts({ posts }: { posts: Post[] }) {
+export default async function Posts() {
+    const posts = await fetchPosts()
     return (
-        <div className="bg-white py-24 sm:py-32">
+        <div className="bg-white">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto text-center">
                     <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">From the blog</h2>
