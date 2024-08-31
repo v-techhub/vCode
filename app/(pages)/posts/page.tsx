@@ -15,7 +15,7 @@ async function fetchPosts() {
             postsArr.push(doc.data() as Post)
         })
     } catch (err) {
-        console.error(err)
+        err instanceof Error && console.error(err.message)
     }
     return postsArr
 }
