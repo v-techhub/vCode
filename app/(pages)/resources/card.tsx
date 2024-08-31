@@ -27,7 +27,7 @@ const Card = ({ item }: { item: string }) => {
                 <DialogTrigger className="text-green-500 px-3 py-2 rounded-sm mx-2 active:scale-90 transition-all duration-500 hover:scale-110 cursor-pointer">GET</DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Confirm Download</DialogTitle>
+                        <DialogTitle>Confirm Download!</DialogTitle>
                         <DialogDescription>
                             <p className="tracking-tight">Are you absolutely sure you want to get {item}?</p>
                             <Link href={downloadUrl} className="text-indigo-500 text-underline" download>click here to dowload</Link>
