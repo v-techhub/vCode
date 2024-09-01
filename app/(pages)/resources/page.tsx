@@ -2,19 +2,21 @@ import { ref, listAll } from "firebase/storage";
 import { storage } from "@/app/firebase/config"
 import Card from "./card";
 
-const listRef = ref(storage, 'resources');
-
-const getResources = async () => {
-    const data: string[] = []
-    const res = await listAll(listRef)
-    res.items.forEach(item => {
-        data.push(item.name)
-    })
-    return data
-}
 
 const Resources = async () => {
+    const listRef = ref(storage, 'resources');
+
+    const getResources = async () => {
+        const data: string[] = []
+        const res = await listAll(listRef)
+        res.items.forEach(item => {
+            data.push(item.name)
+        })
+        return data
+    }
+
     const listOfResources = await getResources()
+
     return (
         <section>
             <header className="p-3 text-center">

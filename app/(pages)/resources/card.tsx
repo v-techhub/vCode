@@ -29,7 +29,7 @@ const Card = ({ item }: { item: string }) => {
                     <DialogHeader>
                         <DialogTitle>Confirm Download!</DialogTitle>
                         <DialogDescription>
-                            <p className="tracking-tight">Are you absolutely sure you want to get {item}?</p>
+                            <p className="tracking-tight">Are you absolutely sure you want to get <strong>{item}</strong>?</p>
                             <Link href={downloadUrl} className="text-indigo-500 text-underline" download>click here to dowload</Link>
                         </DialogDescription>
                     </DialogHeader>
