@@ -1,14 +1,14 @@
-import { ref, listAll } from "firebase/storage";
-import { storage } from "@/app/firebase/config"
+// import { ref, listAll } from "firebase/storage";
+// import { storage } from "@/app/firebase/config"
 import Card from "./card";
 
 const Resources = async () => {
-    const listRef = ref(storage, 'resources');
+    // const listRef = ref(storage, 'resources');
     const data: string[] = []
-    const res = await listAll(listRef)
-    res.items.forEach(item => {
-        data.push(item.name)
-    })
+    // const res = await listAll(listRef)
+    // res.items.forEach(item => {
+    //     data.push(item.name)
+    // })
 
     return (
         <section>
